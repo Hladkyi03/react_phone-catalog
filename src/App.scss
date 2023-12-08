@@ -1,1 +1,50 @@
-// not empty
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Mont;
+  src: local("Mont"),
+    url("../public/fonts/Mont-Regular.otf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Mont-SemiBold;
+  src: local("Mont"),
+    url("../public/fonts/Mont-SemiBold.otf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Mont-Bold;
+  src: local("Mont"),
+    url("../public/fonts/Mont-Bold.otf") format("truetype");
+  font-weight: normal;
+}
+
+html {
+  font-family: Mont, Courier, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  background: #fff;
+  height: 100%;
+}
+
+/* stylelint-disable selector-max-id */
+#root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+/* stylelint-enable selector-max-id */
+
+.main {
+  flex: 1 1 auto;
+}

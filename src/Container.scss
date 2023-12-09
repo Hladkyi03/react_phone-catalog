@@ -1,0 +1,15 @@
+@mixin column-count($count) {
+  grid-template-columns: repeat(var(--column-count), var(--column-width));
+}
+
+.container {
+  max-width: 1136px;
+  display: grid;
+  column-gap: 16px;
+  margin: 0 auto;
+
+  --column-count: 24;
+  --column-width: 1fr;
+
+  @include column-count(var(--column-count));
+}

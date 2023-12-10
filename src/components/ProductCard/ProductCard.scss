@@ -1,0 +1,105 @@
+.product-card {
+  padding: 24px;
+  padding-top: 32px;
+  grid-column: span 6;
+  height: 507px;
+  border: 1px solid #E2E6E9;
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+
+  &__image {
+    max-width: 100%;
+    width: 208px;
+    height: 208px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  &__title {
+    color: #313237;
+    line-height: 21px;
+    margin-top: 24px;
+  }
+
+  &__prices-wrapper {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__price {
+    color: #313237;
+    font-family: Mont-Bold, Courier, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 140%;
+  }
+
+  &__discount-price {
+    color: #89939A;
+    font-family: Mont, Courier, sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration-line: line-through;
+  }
+
+  &__specifications {
+    border-top: 1px solid #E2E6E9;
+    margin-top: 8px;
+    padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__specification {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-family: Mont-SemiBold, Courier, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  &__specification-name {
+    color: #89939A;
+  }
+
+  &__specification-value {
+    color: #313237;
+  }
+
+  &__buttons {
+    margin-top: auto;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  &__add-to-cart {
+    width: 176px;
+    height: 40px;
+    background: #313237;
+    border: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Mont-SemiBold, Courier, sans-serif;
+    font-weight: 600;
+    line-height: 21px;
+  }
+
+  &__add-to-fav {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid #B4BDC3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -101,7 +101,7 @@ const Carousel: React.FC<Props> = ({
   };
 
   return (
-    <div className="carousel carousel--margin-top-40">
+    <div className="carousel">
       <div className="container">
         <div className="carousel__wrapper">
           <ul className="carousel__list" style={carouselListDynamicStyles}>

@@ -1,0 +1,61 @@
+@import '../../CssReset/variables';
+
+.shop-by-caterogy {
+  &--margin-top-80 {
+    margin-top: 80px;
+  }
+
+  &__title {
+    color: $gray-primary;
+    font-family: Mont-Bold, Courier, sans-serif;
+    font-size: 32px;
+    line-height: normal;
+    letter-spacing: -0.32px;
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    margin-bottom: 24px;
+  }
+
+  &__category {
+    grid-column: span 8;
+  }
+
+  &__category-image {
+    width: 368px;
+    height: 368px;
+    background-size: 110% auto;
+    background-position: -160% calc(100% + 125px);
+    background-repeat: no-repeat;
+
+    &--phones {
+      background-image: url('../../media/img/category-phones.png');
+      background-color: #FCDBC1;
+    }
+
+    &--tablets {
+      background-image: url('../../media/img/category-tablets.png');
+      background-color: #8D8D92;
+      background-position: -125% calc(100% + 75px);
+    }
+
+    &--accessories {
+      background-image: url('../../media/img/category-accessories.png');
+      background-color: #973D5F;
+      background-size: 183% auto;
+      background-position: -11% calc(100%);
+    }
+  }
+
+  &__caterogy-name {
+    margin-top: 24px;
+    color: $gray-primary;
+    font-family: Mont-SemiBold, Courier, sans-serif;
+    font-size: 20px;
+    line-height: normal;
+  }
+
+  &__models-amount {
+    color: $gray-secondary;
+    line-height: 21px;
+  }
+}

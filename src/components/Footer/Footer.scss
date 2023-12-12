@@ -1,7 +1,12 @@
+@import '../../CssReset/variables';
+
 .footer {
   height: auto;
+  background: $gray-white;
+  box-shadow: 0 -1px 0 0 $gray-elements;
 
   &__wrapper-container {
+    height: 96px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -9,22 +14,38 @@
     margin: 0 auto;
   }
 
-  &__right-wrapper {
+  &__top-button {
+    width: 32px;
+    height: 32px;
+    border: 1px solid $gray-icons-placeholders;
     display: flex;
     align-items: center;
-    gap: 16px;
+    justify-content: center;
+  }
+
+  &__top-button-icon {
+    fill: $gray-primary;
   }
 
   &__right-text {
     font-family: Mont-SemiBold, Courier, sans-serif;
     font-weight: 600;
     font-size: 12px;
-    color: #89939A;
+    color: $gray-secondary;
   }
 
-  &__top-button {
-    width: 32px;
-    height: 32px;
-    border: 1px solid #B4BDC3;
+  &__right-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+
+    &:hover .footer__top-button {
+      border: 1px solid $gray-primary;
+    }
+
+    &:hover .footer__right-text {
+      color: $gray-primary;
+    }
   }
 }

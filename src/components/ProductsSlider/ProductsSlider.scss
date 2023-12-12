@@ -1,3 +1,5 @@
+@import '../../CssReset/variables';
+
 .hot-prices-slider {
   margin: 0 auto;
   width: 100%;
@@ -17,7 +19,7 @@
 }
 
 .hot-prices-slider__title {
-  color: #313237;
+  color: $gray-primary;
   font-family: Mont-Bold, Courier, sans-serif;
   font-size: 32px;
   line-height: normal;
@@ -49,7 +51,7 @@
 }
 
 .hot-prices-slider__button-icon {
-  fill: #313237;
+  fill: $gray-primary;
 }
 
 .hot-prices-slider__button {
@@ -58,7 +60,7 @@
   justify-content: center;
   height: 32px;
   width: 32px;
-  border: 1px solid #B4BDC3;
+  border: 1px solid $gray-icons-placeholders;
   outline: 0;
   cursor: pointer;
 
@@ -71,11 +73,11 @@
   }
 
   &:hover {
-    border: 1px solid #313237;
+    border: 1px solid $gray-primary;
   }
 
   &:disabled {
-    border: 1px solid #E2E6E9;
+    border: 1px solid $gray-elements;
     cursor: default;
   }
 

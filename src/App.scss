@@ -1,3 +1,5 @@
+@import './CssReset/variables';
+
 * {
   box-sizing: border-box;
 }
@@ -47,4 +49,5 @@ body {
 
 .main {
   flex: 1 1 auto;
+  padding: 40px 0 80px;
 }

@@ -1,47 +1,76 @@
-import { useContext } from 'react';
+import { useEffect, useState } from 'react';
 import '../../Container.scss';
 import Carousel from '../../components/Carousel/Carousel';
-import banner1 from '../../media/carousel/Banner1.png';
-import banner2 from '../../media/carousel/Banner2.jpg';
-import banner3 from '../../media/carousel/Banner3.png';
-import { StateContext } from '../../components/ProductsContext/ProductsContext';
-import HotPricesSlider from '../../components/HotPricesSlider/HotPricesSlider';
+import banner1 from '../../media/carousel/banner-phones.png';
+import banner2 from '../../media/carousel/banner-tablets.png';
+import banner3 from '../../media/carousel/banner-accessories.png';
+import { ShopByCategory } from '../../components/ShopByCategory/ShopByCategory';
+import { getProducts } from '../../api/api';
+import { Product } from '../../types/Product';
+import { BrandNew } from '../../components/BrandNew/BrandNew';
+import { HotPrices } from '../../components/HotPrices/HotPrices';
 
 export const HomePage = () => {
-  const state = useContext(StateContext);
+  const [brandNewProducts, setBrandNewProducts] = useState<Product[]>([]);
+  const [hotPriceProducts, setHotPriceProducts] = useState<Product[]>([]);
 
-  if (!state.products || state.products.length === 0) {
-    return <div>Loading...</div>;
-  }
+  const getHotPriceProducts = (products: Product[]) => {
+    const minimalSale = 0.07;
+
+    return products
+      .filter(product => (
+        product.fullPrice - product.price >= product.fullPrice * minimalSale
+      ))
+      .sort((product1, product2) => {
+        const firstProductAbsoluteDiscount
+          = product1.fullPrice - product1.price;
+        const secondProductAbsoluteDiscount
+          = product2.fullPrice - product2.price;
+
+        return secondProductAbsoluteDiscount - firstProductAbsoluteDiscount;
+      });
+  };
+
+  const getBrandNewProducts = (products: Product[]) => {
+    const maxYear = products.reduce((max, product) => {
+      return (product.year > max) ? product.year : max;
+    }, -Infinity);
+
+    return products
+      .filter(product => product.year === maxYear)
+      .sort((product1, product2) => (
+        product2.fullPrice - product1.fullPrice
+      ));
+  };
+
+  useEffect(() => {
+    getProducts()
+      .then(response => {
+        setBrandNewProducts(getBrandNewProducts(response));
+        setHotPriceProducts(getHotPriceProducts(response));
+      })
+      .catch(() => {
+        throw new Error();
+      });
+  }, []);
 
   return (
     <>
-      <div className="container">
-        <Carousel
-          images={[banner1, banner2, banner3]}
-          frameSize={1}
-          itemWidth={1040}
-          step={1}
-          animationDuration={1000}
-          infinite={false}
-          nav
-        />
-      </div>
+      <Carousel
+        images={[banner1, banner2, banner3]}
+        frameSize={1}
+        itemWidth={1040}
+        step={1}
+        animationDuration={1000}
+        infinite={false}
+        nav
+      />
 
-      <div className="container">
-        <HotPricesSlider
-          products={[state.products[0], state.products[1],
-            state.products[2], state.products[3], state.products[4],
-            state.products[5], state.products[6], state.products[7],
-            state.products[8], state.products[9],
-          ]}
-          step={4}
-          itemWidth={272}
-          gap={16}
-          frameSize={4}
-          animationDuration={1500}
-        />
-      </div>
+      <HotPrices products={hotPriceProducts} />
+
+      <ShopByCategory />
+
+      <BrandNew products={brandNewProducts} />
     </>
   );
 };

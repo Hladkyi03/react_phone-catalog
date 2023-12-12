@@ -1,36 +1,41 @@
+@import '../../CssReset/variables';
+
 .product-card {
   padding: 24px;
   padding-top: 32px;
   grid-column: span 6;
   height: 507px;
-  border: 1px solid #E2E6E9;
-  background: #FFF;
+  border: 1px solid $gray-elements;
+  background: $gray-white;
   display: flex;
   flex-direction: column;
 
   &__image {
     max-width: 100%;
-    width: 208px;
-    height: 208px;
+    width: 145px;
+    height: 200px;
     display: block;
     margin: 0 auto;
   }
 
   &__title {
-    color: #313237;
+    color: $gray-primary;
     line-height: 21px;
     margin-top: 24px;
   }
 
+  &__bottom-wrapper {
+    margin-top: auto;
+  }
+
   &__prices-wrapper {
-    margin-top: 8px;
     display: flex;
     align-items: center;
     gap: 8px;
   }
 
   &__price {
-    color: #313237;
+    color: $gray-primary;
     font-family: Mont-Bold, Courier, sans-serif;
     font-size: 22px;
     font-weight: 700;
@@ -38,7 +43,7 @@
   }
 
   &__discount-price {
-    color: #89939A;
+    color: $gray-secondary;
     font-family: Mont, Courier, sans-serif;
     font-size: 22px;
     font-weight: 500;
@@ -47,7 +52,7 @@
   }
 
   &__specifications {
-    border-top: 1px solid #E2E6E9;
+    border-top: 1px solid $gray-elements;
     margin-top: 8px;
     padding: 16px 0;
     display: flex;
@@ -67,11 +72,11 @@
   }
 
   &__specification-name {
-    color: #89939A;
+    color: $gray-secondary;
   }
 
   &__specification-value {
-    color: #313237;
+    color: $gray-primary;
   }
 
   &__buttons {
@@ -84,9 +89,9 @@
   &__add-to-cart {
     width: 176px;
     height: 40px;
-    background: #313237;
+    background: $gray-primary;
     border: 0;
-    color: #FFF;
+    color: $gray-white;
     text-align: center;
     font-family: Mont-SemiBold, Courier, sans-serif;
     font-weight: 600;
@@ -97,7 +102,7 @@
     width: 40px;
     height: 40px;
     background-color: transparent;
-    border: 1px solid #B4BDC3;
+    border: 1px solid $gray-icons-placeholders;
     display: flex;
     align-items: center;
     justify-content: center;

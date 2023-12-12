@@ -1,3 +1,5 @@
+@import '../../CssReset/variables';
+
 .nav {
   display: flex;
   align-items: center;
@@ -13,7 +15,7 @@
 
   &__link {
     display: block;
-    color: #89939A;
+    color: $gray-secondary;
     font-family: Mont-Bold, Courier, sans-serif;
     font-size: 12px;
     font-weight: 700;
@@ -24,14 +26,14 @@
     position: relative;
 
     &--active {
-      color: #313237;
+      color: $gray-primary;
 
       &::after {
         content: '';
         display: block;
         width: 100%;
         height: 3px;
-        background: #313237;
+        background: $gray-primary;
         position: absolute;
         bottom: 0;
       }

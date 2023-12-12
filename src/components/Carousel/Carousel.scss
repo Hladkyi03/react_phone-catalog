@@ -1,11 +1,9 @@
+@import '../../CssReset/variables';
+
 .carousel {
   margin: 0 auto;
   width: 100%;
   grid-column: 1 / -1;
-
-  &--margin-top-40 {
-    margin-top: 40px;
-  }
 }
 
 .carousel__wrapper {
@@ -44,17 +42,17 @@
   width: 14px;
   height: 4px;
   border: none;
-  background-color: #E2E6E9;
+  background-color: $gray-elements;
   margin: 0 5px;
   cursor: pointer;
 
   &--active {
-    background-color: #313237;
+    background-color: $gray-primary;
   }
 }
 
 .carousel__button-icon {
-  fill: #313237;
+  fill: $gray-primary;
 }
 
 .carousel__button {
@@ -64,7 +62,7 @@
   height: 400px;
   grid-row: 1 / 2;
   position: relative;
-  border: 1px solid #B4BDC3;
+  border: 1px solid $gray-icons-placeholders;
   outline: 0;
   cursor: pointer;
 
@@ -77,11 +75,11 @@
   }
 
   &:hover {
-    border: 1px solid #313237;
+    border: 1px solid $gray-primary;
   }
 
   &:disabled {
-    border: 1px solid #E2E6E9;
+    border: 1px solid $gray-elements;
     cursor: default;
   }
 

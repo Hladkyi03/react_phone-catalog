@@ -1,7 +1,9 @@
+@import '../../CssReset/variables';
+
 .header {
   padding-left: 24px;
-  background: var(--gray-white, #FFF);
-  box-shadow: 0 1px 0 0 #E2E6E9;
+  background: $gray-white;
+  box-shadow: 0 1px 0 0 $gray-elements;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,8 +18,8 @@
     justify-content: center;
     width: 64px;
     height: 64px;
-    background: #FFF;
-    box-shadow: -1px 0 0 0 #E2E6E9;
+    background: $gray-white;
+    box-shadow: -1px 0 0 0 $gray-elements;
     outline: 0;
     border: 0;
     cursor: pointer;

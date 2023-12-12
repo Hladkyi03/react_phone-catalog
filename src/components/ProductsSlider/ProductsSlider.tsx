@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './HotPricesSlider.scss';
+import './ProductsSlider.scss';
 import { Product } from '../../types/Product';
 import { ProductCard } from '../ProductCard/ProductCarD';
 
@@ -10,15 +10,17 @@ type Props = {
   itemWidth: number,
   gap: number,
   animationDuration: number,
+  title: string,
 };
 
-const HotPricesSlider: React.FC<Props> = ({
+const ProductsSlider: React.FC<Props> = ({
   products,
   step,
   frameSize,
   itemWidth,
   gap,
   animationDuration,
+  title,
 }) => {
   const [currentPosition, setCurrentPosition] = useState(0);
 
@@ -60,7 +62,7 @@ const HotPricesSlider: React.FC<Props> = ({
   };
 
   return (
-    <div className="hot-prices-slider hot-prices-slider--margin-top-80">
+    <div className="hot-prices-slider">
       <div className="container">
         <div className="hot-prices-slider__wrapper">
           <ul
@@ -77,7 +79,7 @@ const HotPricesSlider: React.FC<Props> = ({
 
         <div className="hot-prices-slider__header">
           <h3 className="hot-prices-slider__title">
-            Hot prices
+            {title}
           </h3>
 
           <div className="hot-prices-slider__buttons-wrapper">
@@ -88,7 +90,8 @@ const HotPricesSlider: React.FC<Props> = ({
               className="hot-prices-slider__button
                 hot-prices-slider__button--prev"
               onClick={handlePrevClick}
-              disabled={currentPosition === 0}
+              disabled={currentPosition === 0
+                || frameSize > products.length}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +119,8 @@ const HotPricesSlider: React.FC<Props> = ({
               className="hot-prices-slider__button
                 hot-prices-slider__button--next"
               onClick={handleNextClick}
-              disabled={currentPosition === -(maxTransform)}
+              disabled={currentPosition === -(maxTransform)
+                || frameSize > products.length}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -144,4 +148,4 @@ const HotPricesSlider: React.FC<Props> = ({
   );
 };
 
-export default HotPricesSlider;
+export default ProductsSlider;

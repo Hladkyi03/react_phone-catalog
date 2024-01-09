@@ -1,0 +1,29 @@
+@import '../../CssReset/variables';
+
+.breadcrumbs {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  position: relative;
+  top: -16px;
+
+  &__link {
+    height: 16px;
+  }
+
+  &__item {
+    color: $gray-secondary;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: end;
+    height: 16px;
+
+    &::before {
+      content: url("../../media/icons/Breadcrumbs-Arrow.svg");
+      margin-right: 8px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

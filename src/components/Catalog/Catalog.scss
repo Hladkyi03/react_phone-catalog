@@ -1,0 +1,21 @@
+@import '../../CssReset/variables';
+
+.catalog {
+  &__title {
+    margin-top: 24px;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.32px;
+    color: $gray-primary;
+    grid-column: 1 / -1;
+  }
+
+  &__models-count {
+    margin-top: 8px;
+    color: $gray-secondary;
+    font-weight: 500;
+    line-height: 21px;
+    grid-column: 1 / -1;
+  }
+}

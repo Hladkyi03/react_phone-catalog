@@ -1,10 +1,13 @@
 import './ProductsList.scss';
 import cn from 'classnames';
 import { Link, useSearchParams } from 'react-router-dom';
+import { useContext } from 'react';
 import { Product } from '../../types/Product';
 import { getNumbers } from '../../utils/getNumbers';
 import { getSearchWith } from '../../utils/getSearchWith';
 import { ProductCard } from '../ProductCard/ProductCard';
+import { FavouritesContext } from '../FavouriteContext/FavouriteContext';
+import { CartProductsContext } from '../CartContext/CartContext';
 
 type Props = {
   total: number,
@@ -20,6 +23,8 @@ export const ProductsList: React.FC<Props> = ({
   products,
 }) => {
   const [searchParams] = useSearchParams();
+  const favouritesState = useContext(FavouritesContext);
+  const CartState = useContext(CartProductsContext);
 
   const buttonCount = total % perPage === 0
     ? Math.floor(total / perPage)
@@ -29,6 +34,18 @@ export const ProductsList: React.FC<Props> = ({
 
   const visibleItems = products
     .slice(currentPage * perPage - perPage, currentPage * perPage);
+
+  const checkInFavourities = (id: string) => {
+    return favouritesState.favourites.some(item => (
+      item.id === id
+    ));
+  };
+
+  const checkInCart = (id: string) => {
+    return CartState.cartProducts.some(item => (
+      item.id === id
+    ));
+  };
 
   const handlePrevClick = () => {
     if (currentPage === 1) {
@@ -65,7 +82,11 @@ export const ProductsList: React.FC<Props> = ({
                   key={product.id}
                   className="products-list__product"
                 >
-                  <ProductCard product={product} />
+                  <ProductCard
+                    product={product}
+                    favourite={checkInFavourities(product.id)}
+                    isInCart={checkInCart(product.id)}
+                  />
                 </li>
               ))}
             </div>

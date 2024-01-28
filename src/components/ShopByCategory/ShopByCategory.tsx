@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import { StateContext } from '../ProductsContext/ProductsContext';
+import { ProductsContext } from '../ProductsContext/ProductsContext';
 import './ShopByCategory.scss';
 
 export const ShopByCategory = () => {
-  const state = useContext(StateContext);
+  const state = useContext(ProductsContext);
 
   const phonesAmount = state.products.filter(product => (
     product.category === 'phones')).length;

@@ -1,12 +1,14 @@
 import React, { Reducer, useReducer, useState } from 'react';
 import { Product } from '../../types/Product';
-import { Action } from '../../types/Action';
-import { ActionType } from '../../types/ActionType';
+import { ActionProducts } from '../../types/ActionProducts';
+import { ActionTypeProducts } from '../../types/ActionTypeProducts';
 
-function reducer(state: State, action: Action): State {
+function reducer(state: State, action: ActionProducts): State {
   switch (action.type) {
-    case ActionType.GetProducts: {
-      return { products: action.payload };
+    case ActionTypeProducts.GetProducts: {
+      return {
+        products: action.payload,
+      };
     }
 
     default:
@@ -22,9 +24,9 @@ const initialState: State = {
   products: [],
 };
 
-export const StateContext = React.createContext<State>(initialState);
-export const DispatchContext = React
-  .createContext<(action: Action) => void>(() => { });
+export const ProductsContext = React.createContext<State>(initialState);
+export const ProductsDispatchContext = React
+  .createContext<(action: ActionProducts) => void>(() => { });
 
 type Props = {
   children: React.ReactNode;
@@ -33,18 +35,21 @@ type Props = {
 export const GlobalStateProvider: React.FC<Props> = ({ children }) => {
   const [todos, setTodos] = useState<State>(initialState);
 
-  const [state, dispatch] = useReducer<Reducer<State, Action>>(reducer, todos);
+  const [state, dispatch] = useReducer<Reducer<State, ActionProducts>>(
+    reducer,
+    todos,
+  );
 
-  const dispatchAndSave = (action: Action) => {
+  const dispatchAndSave = (action: ActionProducts) => {
     dispatch(action);
     setTodos((prevState: State) => reducer(prevState, action));
   };
 
   return (
-    <DispatchContext.Provider value={dispatchAndSave}>
-      <StateContext.Provider value={state}>
+    <ProductsDispatchContext.Provider value={dispatchAndSave}>
+      <ProductsContext.Provider value={state}>
         {children}
-      </StateContext.Provider>
-    </DispatchContext.Provider>
+      </ProductsContext.Provider>
+    </ProductsDispatchContext.Provider>
   );
 };

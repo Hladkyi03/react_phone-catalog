@@ -2,18 +2,12 @@ import './Catalog.scss';
 import { useSearchParams } from 'react-router-dom';
 import { Product } from '../../types/Product';
 import { ProductsList } from '../ProductsList/ProductsList';
-import { Filters } from '../Filters/Filters';
-import { BreadCrumbs } from '../BreadCrumbs/BreadCrumbs';
 
 type Props = {
-  title: string,
-  modelsCount: number,
   products: Product[],
 };
 
-const breadCrumbsItems = [{ name: 'Phones', slug: 'phones' }];
-
-export const Catalog: React.FC<Props> = ({ title, modelsCount, products }) => {
+export const Catalog: React.FC<Props> = ({ products }) => {
   const [searchParams] = useSearchParams();
 
   const page = Number(searchParams.get('page')) || 1;
@@ -55,18 +49,6 @@ export const Catalog: React.FC<Props> = ({ title, modelsCount, products }) => {
   return (
     <div className="catalog">
       <div className="container">
-        <BreadCrumbs breadCrumbsItems={breadCrumbsItems} />
-
-        <h1 className="catalog__title">
-          {title}
-        </h1>
-
-        <p className="catalog__models-count">
-          {`${modelsCount} models`}
-        </p>
-
-        <Filters />
-
         <ProductsList
           products={visibleProducts}
           total={products.length}

@@ -23,5 +23,78 @@
     outline: 0;
     border: 0;
     cursor: pointer;
+    position: relative;
+  }
+
+  &__input-block {
+    position: relative;
+  }
+
+  &__input {
+    font-family: inherit;
+    color: $gray-primary;
+    font-weight: 600;
+    height: 100%;
+    padding: 23px 64px 23px 24px;
+    background: transparent;
+    box-shadow: -1px 0 0 0 #E2E6E9;
+    width: 327px;
+    border: 0;
+    outline: 0;
+
+    &::placeholder {
+      font-family: inherit;
+      color: $gray-icons-placeholders;
+      font-weight: 600;
+    }
+  }
+
+  &__input-icon {
+    top: 24px;
+    right: 24px;
+    position: absolute;
+    cursor: pointer;
+  }
+
+  &__link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    &--active {
+      color: $gray-primary;
+
+      &::after {
+        content: '';
+        display: block;
+        width: calc(100% + 1px);
+        height: 3px;
+        background: $gray-primary;
+        position: absolute;
+        bottom: 0;
+        left: -1px;
+        z-index: 2;
+      }
+    }
+  }
+
+  &__counter {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: $deep-red;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    color: $gray-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 600;
+    z-index: 2;
   }
 }

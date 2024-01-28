@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './ProductsSlider.scss';
 import { Product } from '../../types/Product';
 import { ProductCard } from '../ProductCard/ProductCard';
+import { FavouritesContext } from '../FavouriteContext/FavouriteContext';
+import { CartProductsContext } from '../CartContext/CartContext';
 
 type Props = {
   products: Product[],
@@ -23,6 +25,21 @@ const ProductsSlider: React.FC<Props> = ({
   title,
 }) => {
   const [currentPosition, setCurrentPosition] = useState(0);
+
+  const state = useContext(FavouritesContext);
+  const CartState = useContext(CartProductsContext);
+
+  const checkInFavourities = (id: string) => {
+    return state.favourites.some(item => (
+      item.id === id
+    ));
+  };
+
+  const checkInCart = (id: string) => {
+    return CartState.cartProducts.some(item => (
+      item.id === id
+    ));
+  };
 
   const maxTransform = (itemWidth + gap) * products.length
     - frameSize * (itemWidth + gap);
@@ -71,7 +88,11 @@ const ProductsSlider: React.FC<Props> = ({
           >
             {products.map(product => (
               <li key={product.id}>
-                <ProductCard product={product} />
+                <ProductCard
+                  product={product}
+                  favourite={checkInFavourities(product.id)}
+                  isInCart={checkInCart(product.id)}
+                />
               </li>
             ))}
           </ul>

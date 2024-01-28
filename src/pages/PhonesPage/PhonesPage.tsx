@@ -4,6 +4,10 @@ import { getProducts } from '../../api/api';
 import { Catalog } from '../../components/Catalog/Catalog';
 import { Product } from '../../types/Product';
 import { Loader } from '../../components/Loader/Loader';
+import { BreadCrumbs } from '../../components/BreadCrumbs/BreadCrumbs';
+import { Filters } from '../../components/Filters/Filters';
+
+const breadCrumbsItems = [{ name: 'Phones', slug: 'Phones' }];
 
 export const PhonesPage = () => {
   const [phones, setPhones] = useState<Product[]>([]);
@@ -33,12 +37,24 @@ export const PhonesPage = () => {
 
   return (
     <>
+      <div className="container">
+        <BreadCrumbs breadCrumbsItems={breadCrumbsItems} />
+
+        <h1 className="catalog__title">
+          Mobile phones
+        </h1>
+
+        <p className="catalog__models-count">
+          {`${phones.length} models`}
+        </p>
+
+        <Filters />
+      </div>
+
       {isLoading
         ? (<Loader />)
         : (
           <Catalog
-            title="Mobile phones"
-            modelsCount={phones.length}
             products={phones}
           />
         )}

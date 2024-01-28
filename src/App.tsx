@@ -1,5 +1,4 @@
 import './CssReset/reset.css';
-import 'normalize.css';
 import './App.scss';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
@@ -9,17 +8,19 @@ import { HomePage } from './pages/HomePage/HomePage';
 import { PhonesPage } from './pages/PhonesPage/PhonesPage';
 import { TabletsPage } from './pages/TabletsPage/TabletsPage';
 import { Footer } from './components/Footer/Footer';
-import { DispatchContext } from './components/ProductsContext/ProductsContext';
+import { ProductsDispatchContext } from
+  './components/ProductsContext/ProductsContext';
 import { getProducts } from './api/api';
-import { ActionType } from './types/ActionType';
+import { ActionTypeProducts } from './types/ActionTypeProducts';
+import { FavouritesPage } from './pages/FavouritesPage/FavouritesPage';
 
 export const App = () => {
-  const reducer = useContext(DispatchContext);
+  const reducer = useContext(ProductsDispatchContext);
 
   useEffect(() => {
     getProducts()
       .then(response => {
-        reducer({ type: ActionType.GetProducts, payload: response });
+        reducer({ type: ActionTypeProducts.GetProducts, payload: response });
       })
       .catch(() => {
         throw new Error();
@@ -36,6 +37,7 @@ export const App = () => {
           <Route path="home" element={<Navigate to=".." replace />} />
           <Route path="phones" element={<PhonesPage />} />
           <Route path="tablets" element={<TabletsPage />} />
+          <Route path="favourites" element={<FavouritesPage />} />
           <Route
             path="*"
             element={<NotFoundPage />}

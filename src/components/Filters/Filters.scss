@@ -37,6 +37,8 @@ $dropdown-margin: 4px;
     border: 1px solid $gray-icons-placeholders;
     background-color: transparent;
     outline: 0;
+    font-weight: 600;
+    font-family: inherit;
     padding-inline: 12px;
     cursor: pointer;
     transition: border-color 0.3s ease-in-out;

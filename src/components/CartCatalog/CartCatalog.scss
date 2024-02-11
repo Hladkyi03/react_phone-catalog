@@ -1,0 +1,29 @@
+@import '../../CssReset/variables';
+
+.cart-catalog {
+  grid-column: 1 / 17;
+  padding-top: 24px;
+
+  &__products {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__back-link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: Mont-SemiBold, Courier, sans-serif;
+    color: $gray-secondary;
+    font-size: 12px;
+
+    &::before {
+      content: url("../../media/icons/arrow-right.svg");
+      width: 16px;
+      height: 16px;
+      display: block;
+      margin-bottom: 2px;
+    }
+  }
+}

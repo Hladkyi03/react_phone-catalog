@@ -36,8 +36,8 @@ const ProductsSlider: React.FC<Props> = ({
   };
 
   const checkInCart = (id: string) => {
-    return CartState.cartProducts.some(item => (
-      item.id === id
+    return CartState.cartItems.some(item => (
+      item.product.id === id
     ));
   };
 

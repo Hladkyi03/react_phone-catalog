@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import cn from 'classnames';
 import { Product } from '../../types/Product';
 import './ProductCard.scss';
 import favouriteSvg from '../../media/icons/Favourites.svg';
@@ -48,8 +49,6 @@ export const ProductCard: React.FC<Props> = ({
   const handleAddToCartClick = () => {
     if (!isInCart) {
       cartReducer({ type: ActionTypeCart.AddToCart, payload: product });
-    } else {
-      cartReducer({ type: ActionTypeCart.DeleteFromCart, payload: id });
     }
   };
 
@@ -114,16 +113,20 @@ export const ProductCard: React.FC<Props> = ({
 
         <div className="product-card__buttons">
           <button
-            className="product-card__add-to-cart"
+            className={cn('product-card__add-to-cart', {
+              'product-card__add-to-cart--active': isInCart,
+            })}
             type="button"
             aria-label="add-to-cart-btn"
             onClick={handleAddToCartClick}
           >
-            {`${isInCart ? 'Add to cart' : 'Added to cart'}`}
+            {`${isInCart ? 'Added to cart' : 'Add to cart'}`}
           </button>
 
           <button
-            className="product-card__add-to-fav"
+            className={cn('product-card__add-to-fav', {
+              'product-card__add-to-fav--active': isFavourite,
+            })}
             aria-label="favourites-btn"
             type="button"
             onClick={handleFavouriteClick}

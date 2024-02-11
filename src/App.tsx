@@ -3,16 +3,17 @@ import './App.scss';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { Header } from './components/Header/Header';
-import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
-import { HomePage } from './pages/HomePage/HomePage';
-import { PhonesPage } from './pages/PhonesPage/PhonesPage';
-import { TabletsPage } from './pages/TabletsPage/TabletsPage';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { HomePage } from './pages/HomePage';
+import { PhonesPage } from './pages/PhonesPage';
+import { TabletsPage } from './pages/TabletsPage';
 import { Footer } from './components/Footer/Footer';
 import { ProductsDispatchContext } from
   './components/ProductsContext/ProductsContext';
 import { getProducts } from './api/api';
 import { ActionTypeProducts } from './types/ActionTypeProducts';
-import { FavouritesPage } from './pages/FavouritesPage/FavouritesPage';
+import { FavouritesPage } from './pages/FavouritesPage';
+import { CartPage } from './pages/CartPage';
 
 export const App = () => {
   const reducer = useContext(ProductsDispatchContext);
@@ -38,6 +39,7 @@ export const App = () => {
           <Route path="phones" element={<PhonesPage />} />
           <Route path="tablets" element={<TabletsPage />} />
           <Route path="favourites" element={<FavouritesPage />} />
+          <Route path="cart" element={<CartPage />} />
           <Route
             path="*"
             element={<NotFoundPage />}

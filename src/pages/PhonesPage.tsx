@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 // import { Product } from "../../types/Product";
-import { getProducts } from '../../api/api';
-import { Catalog } from '../../components/Catalog/Catalog';
-import { Product } from '../../types/Product';
-import { Loader } from '../../components/Loader/Loader';
-import { BreadCrumbs } from '../../components/BreadCrumbs/BreadCrumbs';
-import { Filters } from '../../components/Filters/Filters';
+import { getProducts } from '../api/api';
+import { Catalog } from '../components/Catalog/Catalog';
+import { Product } from '../types/Product';
+import { Loader } from '../components/Loader/Loader';
+import { BreadCrumbs } from '../components/BreadCrumbs/BreadCrumbs';
+import { Filters } from '../components/Filters/Filters';
 
 const breadCrumbsItems = [{ name: 'Phones', slug: 'Phones' }];
 

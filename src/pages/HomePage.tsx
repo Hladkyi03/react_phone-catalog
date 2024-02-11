@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import '../../Container.scss';
-import Carousel from '../../components/Carousel/Carousel';
-import banner1 from '../../media/carousel/banner-phones.png';
-import banner2 from '../../media/carousel/banner-tablets.png';
-import banner3 from '../../media/carousel/banner-accessories.png';
-import { ShopByCategory } from '../../components/ShopByCategory/ShopByCategory';
-import { getProducts } from '../../api/api';
-import { Product } from '../../types/Product';
-import { BrandNew } from '../../components/BrandNew/BrandNew';
-import { HotPrices } from '../../components/HotPrices/HotPrices';
+import '../Container.scss';
+import Carousel from '../components/Carousel/Carousel';
+import banner1 from '../media/carousel/banner-phones.png';
+import banner2 from '../media/carousel/banner-tablets.png';
+import banner3 from '../media/carousel/banner-accessories.png';
+import { ShopByCategory } from '../components/ShopByCategory/ShopByCategory';
+import { getProducts } from '../api/api';
+import { Product } from '../types/Product';
+import { BrandNew } from '../components/BrandNew/BrandNew';
+import { HotPrices } from '../components/HotPrices/HotPrices';
 
 export const HomePage = () => {
   const [brandNewProducts, setBrandNewProducts] = useState<Product[]>([]);

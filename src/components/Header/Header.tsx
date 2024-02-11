@@ -6,6 +6,7 @@ import { Nav } from '../Nav/Nav';
 import './Header.scss';
 import favouriteSvg from '../../media/icons/Favourites.svg';
 import CartSvg from '../../media/icons/Cart.svg';
+import { CartProductsContext } from '../CartContext/CartContext';
 
 const handleIsActive = ({ isActive }: { isActive: boolean }) => (
   cn('header__link', { 'header__link--active': isActive })
@@ -18,7 +19,8 @@ const pagesWithSearchBar = [
 export const Header = () => {
   const location = useLocation();
 
-  const state = useContext(FavouritesContext);
+  const favouritesState = useContext(FavouritesContext);
+  const cartState = useContext(CartProductsContext);
 
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -124,7 +126,7 @@ export const Header = () => {
 
         <button className="header__action-button" type="button">
           <div className="header__counter">
-            {state.favourites.length}
+            {favouritesState.favourites.length}
           </div>
 
           <NavLink to="/favourites" className={handleIsActive}>
@@ -133,6 +135,10 @@ export const Header = () => {
         </button>
 
         <button className="header__action-button" type="button">
+          <div className="header__counter">
+            {cartState.cartItems.length}
+          </div>
+
           <NavLink to="/cart" className={handleIsActive}>
             <img src={CartSvg} alt="cart-icon" />
           </NavLink>

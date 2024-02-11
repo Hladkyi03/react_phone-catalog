@@ -1,24 +1,49 @@
 import React, { Reducer, useReducer } from 'react';
-import { Product } from '../../types/Product';
 import { useLocalStorage } from '../../hooks/useLocalstorage';
 import { ActionCart } from '../../types/ActionCart';
 import { ActionTypeCart } from '../../types/ActionTypeCart';
+import { CartItem } from '../../types/CartItem';
+import { getItemId } from '../../utils/getItemId';
 
 function reducer(state: State, action: ActionCart): State {
   switch (action.type) {
     case ActionTypeCart.AddToCart: {
+      const item = action.payload;
+
+      const newCartItem = {
+        product: item,
+        id: getItemId(state.cartItems),
+        quantity: 1,
+      };
+
       return {
-        cartProducts: [...state.cartProducts, action.payload],
+        cartItems: [...state.cartItems, newCartItem],
       };
     }
 
     case ActionTypeCart.DeleteFromCart: {
-      const newFavourites = state.cartProducts.filter(item => (
+      const newCartItems = state.cartItems.filter(item => (
         item.id !== action.payload
       ));
 
       return {
-        cartProducts: newFavourites,
+        cartItems: newCartItems,
+      };
+    }
+
+    case ActionTypeCart.ChangeQuantity: {
+      const { id, newQuantity } = action.payload;
+
+      if (newQuantity < 1) {
+        return state;
+      }
+
+      const updatedCartItems = state.cartItems.map(item => (
+        item.id === id ? { ...item, quantity: newQuantity } : item
+      ));
+
+      return {
+        cartItems: updatedCartItems,
       };
     }
 
@@ -28,11 +53,11 @@ function reducer(state: State, action: ActionCart): State {
 }
 
 type State = {
-  cartProducts: Product[],
+  cartItems: CartItem[],
 };
 
 const initialState: State = {
-  cartProducts: [],
+  cartItems: [],
 };
 
 export const CartProductsContext = React.createContext<State>(initialState);
@@ -45,7 +70,7 @@ type Props = {
 
 export const CartStateProvider: React.FC<Props> = ({ children }) => {
   const [cartProducts, setCartProducts] = useLocalStorage<State>(
-    'cartProducts',
+    'cartItems',
     initialState,
   );
 

@@ -89,13 +89,19 @@
   &__add-to-cart {
     width: 176px;
     height: 40px;
-    background: $gray-primary;
-    border: 0;
+    background-color: $gray-primary;
+    border: 1px solid transparent;
     color: $gray-white;
     text-align: center;
     font-family: Mont-SemiBold, Courier, sans-serif;
     font-weight: 600;
     line-height: 21px;
+
+    &--active {
+      color: $light-green;
+      background-color: $gray-white;
+      border-color: $gray-elements;
+    }
   }
 
   &__add-to-fav {

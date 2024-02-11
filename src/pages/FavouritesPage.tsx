@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { Catalog } from '../../components/Catalog/Catalog';
+import { Catalog } from '../components/Catalog/Catalog';
 import { FavouritesContext } from
-  '../../components/FavouriteContext/FavouriteContext';
-import { BreadCrumbs } from '../../components/BreadCrumbs/BreadCrumbs';
+  '../components/FavouriteContext/FavouriteContext';
+import { BreadCrumbs } from '../components/BreadCrumbs/BreadCrumbs';
 
 const breadCrumbsItems = [{ name: 'Favourites', slug: 'favourites' }];
 

@@ -12,7 +12,9 @@ export const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__wrapper-container">
-        <img src={logo} alt="logo" />
+        <Link to="home">
+          <img src={logo} alt="logo" className="footer__logo" />
+        </Link>
 
         <nav className="nav nav--footer">
           <ul className="nav__list">

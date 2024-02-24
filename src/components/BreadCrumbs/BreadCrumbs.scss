@@ -18,6 +18,11 @@
     display: flex;
     align-items: end;
     height: 16px;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: $gray-primary;
+    }
 
     &::before {
       content: url("../../media/icons/Breadcrumbs-Arrow.svg");

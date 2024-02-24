@@ -53,7 +53,7 @@ export const BreadCrumbs: React.FC<Props> = ({ breadCrumbsItems }) => {
       {breadCrumbsItems.map(item => (
         <Link
           className="breadcrumbs__item"
-          to={`/${item.slug}`}
+          to={`/${item.slug.toLowerCase()}`}
           key={item.slug}
         >
           {item.name}

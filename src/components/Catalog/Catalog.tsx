@@ -18,6 +18,8 @@ export const Catalog: React.FC<Props> = ({ products }) => {
 
   const sort = searchParams.get('sort') || 'age';
 
+  const filterQuery = searchParams.get('query') || '';
+
   let visibleProducts;
 
   switch (sort) {
@@ -46,12 +48,15 @@ export const Catalog: React.FC<Props> = ({ products }) => {
       break;
   }
 
+  visibleProducts
+    = visibleProducts.filter(item => item.name.includes(filterQuery));
+
   return (
     <div className="catalog">
       <div className="container">
         <ProductsList
           products={visibleProducts}
-          total={products.length}
+          total={visibleProducts.length}
           currentPage={page}
           perPage={perPage}
         />

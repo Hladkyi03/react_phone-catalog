@@ -80,6 +80,11 @@ $dropdown-margin: 4px;
     font-weight: 500;
     line-height: 21px;
     cursor: pointer;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: $gray-primary;
+    }
   }
 
   &__dropdown-link {

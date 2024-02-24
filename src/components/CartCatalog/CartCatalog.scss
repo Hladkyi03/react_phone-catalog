@@ -17,6 +17,11 @@
     font-family: Mont-SemiBold, Courier, sans-serif;
     color: $gray-secondary;
     font-size: 12px;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: $gray-primary;
+    }
 
     &::before {
       content: url("../../media/icons/arrow-right.svg");

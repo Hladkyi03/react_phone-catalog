@@ -1,5 +1,7 @@
-import { NavLink, useLocation } from 'react-router-dom';
-import { useContext, useRef, useState } from 'react';
+import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
+import {
+  useContext, useEffect, useRef, useState,
+} from 'react';
 import cn from 'classnames';
 import { FavouritesContext } from '../FavouriteContext/FavouriteContext';
 import { Nav } from '../Nav/Nav';
@@ -18,6 +20,9 @@ const pagesWithSearchBar = [
 
 export const Header = () => {
   const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const query = searchParams.get('query') || '';
 
   const favouritesState = useContext(FavouritesContext);
   const cartState = useContext(CartProductsContext);
@@ -33,12 +38,43 @@ export const Header = () => {
     }
   };
 
-  const handleBlurClick = () => {
-    setIsFocused(false);
+  const handleQueryChange = (newQuery: string) => {
+    const updatedSearchParams = new URLSearchParams(searchParams);
+
+    if (!newQuery.trim()) {
+      updatedSearchParams.delete('query');
+    } else {
+      updatedSearchParams.set('query', newQuery.trim());
+    }
+
+    setSearchParams(updatedSearchParams.toString());
+  };
+
+  const handleClearInputClick = () => {
+    const updatedSearchParams = new URLSearchParams(searchParams);
+
+    updatedSearchParams.delete('query');
+
+    setSearchParams(updatedSearchParams.toString());
+
     if (inputRef.current) {
       inputRef.current.blur();
     }
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (inputRef.current && !inputRef.current.contains(event.target as Node)) {
+      setIsFocused(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   const isSearchVisible = pagesWithSearchBar.includes(location.pathname);
 
@@ -52,27 +88,33 @@ export const Header = () => {
             <input
               type="text"
               className="header__input"
-              placeholder="Search in favourites..."
+              placeholder={`Search in ${location.pathname.slice(1)}...`}
               onFocus={() => setIsFocused(true)}
-              onBlur={() => setIsFocused(false)}
               ref={inputRef}
+              value={query}
+              onChange={e => handleQueryChange(e.target.value)}
             />
 
             {!isFocused && (
-              <svg
-                className="header__input-icon"
+              <button
+                className="header__input-button"
+                aria-label="focus-input"
                 onClick={handleFocusClick}
-                data-cy="searchDelete"
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
+                type="button"
               >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M2.66683 7.33334C2.66683 4.75601 4.75617 2.66668 7.3335
+                <svg
+                  className="header__input-icon"
+                  data-cy="searchDelete"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M2.66683 7.33334C2.66683 4.75601 4.75617 2.66668 7.3335
                   2.66668C9.91083 2.66668 12.0002 4.75601 12.0002
                   7.33334C12.0002 8.59061 11.503 9.73176 10.6945
                   10.5709C10.6716 10.5884 10.6497 10.6077 10.6287
@@ -87,25 +129,31 @@ export const Header = () => {
                   11.0785L14.4715 13.5286C14.7319 13.789 14.7319
                   14.2111 14.4715 14.4714C14.2112 14.7318 13.7891
                   14.7318 13.5287 14.4714L11.0786 12.0213Z"
-                  fill="#333333"
-                />
-              </svg>
+                    fill="#333333"
+                  />
+                </svg>
+              </button>
             )}
 
             {isFocused && (
-              <svg
-                className="header__input-icon"
-                onClick={handleBlurClick}
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
+              <button
+                className="header__inputbutton"
+                aria-label="clear-input-query"
+                onClick={handleClearInputClick}
+                type="button"
               >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M12.4716 4.47138C12.7319 4.21103 12.7319 3.78892
+                <svg
+                  className="header__input-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M12.4716 4.47138C12.7319 4.21103 12.7319 3.78892
                   12.4716 3.52858C12.2112 3.26823 11.7891 3.26823
                   11.5288 3.52858L8.00016 7.05717L4.47157
                   3.52858C4.21122 3.26823 3.78911 3.26823 3.52876
@@ -117,9 +165,10 @@ export const Header = () => {
                   12.7317 12.4716 12.4714C12.7319 12.211 12.7319
                   11.7889 12.4716 11.5286L8.94297 7.99998L12.4716
                   4.47138Z"
-                  fill="#313237"
-                />
-              </svg>
+                    fill="#313237"
+                  />
+                </svg>
+              </button>
             )}
           </div>
         )}

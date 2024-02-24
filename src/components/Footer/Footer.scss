@@ -5,6 +5,14 @@
   background: $gray-white;
   box-shadow: 0 -1px 0 0 $gray-elements;
 
+  &__logo {
+    transition: filter 0.1s ease-in-out;
+
+    &:hover {
+      filter: drop-shadow(0 3px 0 rgba(0, 0, 0, 0.5));
+    }
+  }
+
   &__wrapper-container {
     height: 96px;
     display: flex;
@@ -21,6 +29,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: border-color 0.2s ease-in-out;
   }
 
   &__top-button-icon {
@@ -32,6 +41,7 @@
     font-weight: 600;
     font-size: 12px;
     color: $gray-secondary;
+    transition: color 0.2s ease-in-out;
   }
 
   &__right-wrapper {
@@ -41,7 +51,7 @@
     cursor: pointer;
 
     &:hover .footer__top-button {
-      border: 1px solid $gray-primary;
+      border-color: $gray-primary;
     }
 
     &:hover .footer__right-text {

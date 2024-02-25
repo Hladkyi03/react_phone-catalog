@@ -36,11 +36,11 @@ const Carousel: React.FC<Props> = ({
      values in our operations
   */
 
-  const [currentPosition, setCurrentPosition] =
-    useState(infinite ? -itemWidth : 0);
+  const [currentPosition, setCurrentPosition]
+    = useState(infinite ? -itemWidth : 0);
   const [currentNavPosition, setCurrentNavPosition] = useState(+infinite);
-  const [transitionDuration, setTransitionDuration] =
-    useState(animationDuration);
+  const [transitionDuration, setTransitionDuration]
+    = useState(animationDuration);
 
   const navIds = getNavIds(Math.ceil(images.length / frameSize));
 

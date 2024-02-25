@@ -5,14 +5,6 @@
   align-items: center;
   gap: 64px;
 
-  &__logo {
-    transition: filter 0.1s ease-in-out;
-
-    &:hover {
-      filter: drop-shadow(0 3px 0 rgba(0, 0, 0, 0.5));
-    }
-  }
-
   &__list {
     display: flex;
     flex-direction: row;
@@ -30,7 +22,7 @@
     letter-spacing: 0.48px;
     text-transform: uppercase;
     text-decoration: none;
-    line-height: 64px;
+    line-height: 65px;
     position: relative;
     transition: color 0.3s ease-in-out;
 

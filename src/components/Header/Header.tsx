@@ -1,10 +1,13 @@
-import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
+import {
+  Link, NavLink, useLocation, useSearchParams,
+} from 'react-router-dom';
 import {
   useContext, useEffect, useRef, useState,
 } from 'react';
 import cn from 'classnames';
 import { FavouritesContext } from '../FavouriteContext/FavouriteContext';
 import { Nav } from '../Nav/Nav';
+import logo from '../../media/img/Logo.svg';
 import './Header.scss';
 import favouriteSvg from '../../media/icons/Favourites.svg';
 import CartSvg from '../../media/icons/Cart.svg';
@@ -26,6 +29,8 @@ export const Header = () => {
 
   const favouritesState = useContext(FavouritesContext);
   const cartState = useContext(CartProductsContext);
+
+  const isCartPage = location.pathname === '/cart';
 
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -80,7 +85,13 @@ export const Header = () => {
 
   return (
     <header className="header">
-      <Nav />
+      <div className="header__wrapper-right">
+        <Link to="home">
+          <img src={logo} alt="logo" className="header__logo" />
+        </Link>
+
+        {!isCartPage && (<Nav />)}
+      </div>
 
       <div className="header__actions-block">
         {isSearchVisible && (
@@ -173,15 +184,17 @@ export const Header = () => {
           </div>
         )}
 
-        <button className="header__action-button" type="button">
-          <div className="header__counter">
-            {favouritesState.favourites.length}
-          </div>
+        {!isCartPage && (
+          <button className="header__action-button" type="button">
+            <div className="header__counter">
+              {favouritesState.favourites.length}
+            </div>
 
-          <NavLink to="/favourites" className={handleIsActive}>
-            <img src={favouriteSvg} alt="favourites-icon" />
-          </NavLink>
-        </button>
+            <NavLink to="/favourites" className={handleIsActive}>
+              <img src={favouriteSvg} alt="favourites-icon" />
+            </NavLink>
+          </button>
+        )}
 
         <button className="header__action-button" type="button">
           <div className="header__counter">

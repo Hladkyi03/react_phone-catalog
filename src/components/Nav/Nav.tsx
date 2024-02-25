@@ -1,7 +1,6 @@
 import './Nav.scss';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
-import logo from '../../media/img/Logo.svg';
 
 const handleIsActive = ({ isActive }: { isActive: boolean }) => (
   classNames('nav__link', { 'nav__link--active': isActive })
@@ -13,10 +12,6 @@ export const Nav = () => {
 
   return (
     <nav className="nav">
-      <Link to="home">
-        <img src={logo} alt="logo" className="nav__logo" />
-      </Link>
-
       <ul className="nav__list">
         <li className="nav__item">
           <NavLink

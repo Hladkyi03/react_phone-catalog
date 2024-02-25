@@ -1,3 +1,10 @@
+import { BreadCrumbs } from '../components/BreadCrumbs/BreadCrumbs';
+import { NotFoundInfo } from '../components/NotFoundInfo/NotFoundInfo';
+
 export const NotFoundPage = () => (
-  <h1>Page not found</h1>
+  <div className="container">
+    <BreadCrumbs breadCrumbsItems={[]} />
+
+    <NotFoundInfo />
+  </div>
 );

@@ -44,7 +44,7 @@ export const Header = () => {
     if (!newQuery.trim()) {
       updatedSearchParams.delete('query');
     } else {
-      updatedSearchParams.set('query', newQuery.trim());
+      updatedSearchParams.set('query', newQuery.trimStart());
     }
 
     setSearchParams(updatedSearchParams.toString());

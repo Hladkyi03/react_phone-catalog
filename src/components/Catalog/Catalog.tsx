@@ -54,12 +54,16 @@ export const Catalog: React.FC<Props> = ({ products }) => {
   return (
     <div className="catalog">
       <div className="container">
-        <ProductsList
-          products={visibleProducts}
-          total={visibleProducts.length}
-          currentPage={page}
-          perPage={perPage}
-        />
+        {visibleProducts.length > 0 ? (
+          <ProductsList
+            products={visibleProducts}
+            total={visibleProducts.length}
+            currentPage={page}
+            perPage={perPage}
+          />
+        ) : (
+          <h2 className="catalog__no-results">No search results</h2>
+        )}
       </div>
     </div>
   );

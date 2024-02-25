@@ -62,7 +62,7 @@ export const HomePage = () => {
         itemWidth={1040}
         step={1}
         animationDuration={1000}
-        infinite={false}
+        infinite
         nav
       />
 

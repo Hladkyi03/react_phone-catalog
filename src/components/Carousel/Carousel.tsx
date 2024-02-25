@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Carousel.scss';
 
 type Props = {
@@ -30,32 +30,59 @@ const Carousel: React.FC<Props> = ({
   infinite,
   nav,
 }) => {
-  const [currentPosition, setCurrentPosition] = useState(0);
-  const [currentNavPosition, setCurrentNavPosition] = useState(0);
+  /* we use convertation from boolean value to number
+     to make logic with math operations, false = 0
+     so nothing changed and true = 1 that changes all
+     values in our operations
+  */
+
+  const [currentPosition, setCurrentPosition] =
+    useState(infinite ? -itemWidth : 0);
+  const [currentNavPosition, setCurrentNavPosition] = useState(+infinite);
+  const [transitionDuration, setTransitionDuration] =
+    useState(animationDuration);
 
   const navIds = getNavIds(Math.ceil(images.length / frameSize));
 
-  const maxNavId = navIds[navIds.length - 1];
-  const maxTransform = itemWidth * images.length - frameSize * itemWidth;
+  const maxNavId = navIds[navIds.length - 1] + +infinite;
+  const maxTransform = itemWidth * (images.length + +infinite)
+    - frameSize * itemWidth;
 
   const carouselListDynamicStyles = {
     width: frameSize * itemWidth,
     transform: `translateX(${currentPosition}px)`,
-    transition: `transform ${animationDuration / 1000}s ease`,
+    transition: `transform ${transitionDuration / 1000}s ease`,
   };
 
   const imageDynamicStyles = {
     width: itemWidth,
   };
 
+  useEffect(() => {
+    if (transitionDuration === 0) {
+      setTimeout(() => {
+        setTransitionDuration(animationDuration);
+      }, 10);
+    }
+  });
+
   const handleNextClick = () => {
+    if (currentPosition === -(maxTransform) - itemWidth) {
+      return;
+    }
+
     if (currentPosition === -(maxTransform)) {
       if (infinite) {
-        setCurrentPosition(0);
-        setCurrentNavPosition(0);
-      }
+        setCurrentPosition(prev => prev - step * itemWidth);
+        setCurrentNavPosition(1);
 
-      return;
+        setTimeout(() => {
+          setTransitionDuration(0);
+          setCurrentPosition(-itemWidth);
+        }, animationDuration);
+
+        return;
+      }
     }
 
     if ((currentPosition - step * itemWidth) < -maxTransform) {
@@ -71,12 +98,21 @@ const Carousel: React.FC<Props> = ({
 
   const handlePrevClick = () => {
     if (currentPosition === 0) {
-      if (infinite) {
-        setCurrentPosition(-maxTransform);
-        setCurrentNavPosition(maxNavId);
-      }
-
       return;
+    }
+
+    if (currentPosition === -itemWidth) {
+      if (infinite) {
+        setCurrentPosition(0);
+        setCurrentNavPosition(maxNavId);
+
+        setTimeout(() => {
+          setTransitionDuration(0);
+          setCurrentPosition(-maxTransform);
+        }, animationDuration);
+
+        return;
+      }
     }
 
     if ((currentPosition + step * itemWidth) > 0) {
@@ -100,11 +136,30 @@ const Carousel: React.FC<Props> = ({
     setCurrentNavPosition(id);
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNextClick();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [currentPosition, maxNavId, itemWidth, maxTransform, step]);
+
   return (
     <div className="carousel">
       <div className="container">
         <div className="carousel__wrapper">
           <ul className="carousel__list" style={carouselListDynamicStyles}>
+            {infinite && (
+              <li>
+                <img
+                  src={images[images.length - 1]}
+                  alt="carousel_image"
+                  className="carousel__image"
+                  style={imageDynamicStyles}
+                />
+              </li>
+            )}
+
             {images.map(imageUrl => (
               <li key={imageUrl}>
                 <img
@@ -115,6 +170,17 @@ const Carousel: React.FC<Props> = ({
                 />
               </li>
             ))}
+
+            {infinite && (
+              <li>
+                <img
+                  src={images[0]}
+                  alt="carousel_image"
+                  className="carousel__image"
+                  style={imageDynamicStyles}
+                />
+              </li>
+            )}
           </ul>
         </div>
 
@@ -123,12 +189,12 @@ const Carousel: React.FC<Props> = ({
             {navIds.map(navId => (
               <button
                 type="button"
-                className={`carousel__nav-button ${navId === currentNavPosition
+                className={`carousel__nav-button ${navId + +infinite === currentNavPosition
                   ? 'carousel__nav-button--active'
                   : ''}`}
-                aria-label={`Go to slide ${navId}`}
-                key={navId}
-                onClick={() => handleNavBtnClick(navId)}
+                aria-label={`Go to slide ${navId + +infinite}`}
+                key={navId + +infinite}
+                onClick={() => handleNavBtnClick(navId + +infinite)}
               />
             ))}
           </nav>

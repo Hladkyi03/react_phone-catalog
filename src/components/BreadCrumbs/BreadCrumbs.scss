@@ -6,6 +6,7 @@
   align-items: center;
   position: relative;
   top: -16px;
+  grid-column: 1 / -1;
 
   &__link {
     height: 16px;

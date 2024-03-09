@@ -1,0 +1,71 @@
+@import '../../CssReset/variables';
+
+.phone-images {
+  display: flex;
+  gap: 16px;
+  grid-column: 1 / 13;
+
+  &__all-photos {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    opacity: 0;
+    transform: translateX(-100%);
+    animation: slide-in 1.5s ease-in-out forwards;
+  }
+
+  &__list-button {
+    align-items: center;
+    display: flex;
+    height: 80px;
+    width: 80px;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid $gray-elements;
+    padding: 6px;
+    transition: box-shadow 0.3s ease-in-out;
+
+    &:disabled {
+      background-color: #F0F0F0;
+    }
+
+    &:hover {
+      box-shadow: 0 3px 13px 0 #17203142;
+    }
+
+    &--active {
+      border: 1px solid $gray-primary;
+
+      &:hover {
+        box-shadow: none;
+      }
+    }
+  }
+
+  &__side-image {
+    max-height: 100%;
+  }
+
+  &__main-photo-wrapper {
+    align-items: center;
+    display: flex;
+    height: 464px;
+    justify-content: center;
+    overflow: hidden;
+    width: 464px;
+    opacity: 0;
+    transform: translateX(-100%);
+    animation: slide-in 1s ease-in-out forwards;
+  }
+
+  &__main-photo {
+    max-height: 100%;
+  }
+}
+
+@keyframes slide-in {
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}

@@ -15,6 +15,7 @@ import { ActionTypeProducts } from './types/ActionTypeProducts';
 import { FavouritesPage } from './pages/FavouritesPage';
 import { CartPage } from './pages/CartPage';
 import { ProductDetailsPage } from './pages/ProductDetailsPage';
+import { AccessoriesPage } from './pages/AccessoriesPage';
 
 export const App = () => {
   const reducer = useContext(ProductsDispatchContext);
@@ -39,6 +40,7 @@ export const App = () => {
           <Route path="home" element={<Navigate to=".." replace />} />
           <Route path="phones" element={<PhonesPage />} />
           <Route path="tablets" element={<TabletsPage />} />
+          <Route path="accesories" element={<AccessoriesPage />} />
           <Route path="product/:id" element={<ProductDetailsPage />} />
           <Route path="favourites" element={<FavouritesPage />} />
           <Route path="cart" element={<CartPage />} />

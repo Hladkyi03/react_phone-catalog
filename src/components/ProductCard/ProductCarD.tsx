@@ -12,9 +12,9 @@ import { ActionTypeCart } from '../../types/ActionTypeCart';
 import { CartProductsDispatchContext } from '../CartContext/CartContext';
 
 type Props = {
-  product: Product,
-  favourite: boolean,
-  isInCart: boolean,
+  product: Product;
+  favourite: boolean;
+  isInCart: boolean;
 };
 
 export const ProductCard: React.FC<Props> = ({
@@ -27,7 +27,8 @@ export const ProductCard: React.FC<Props> = ({
 
   const {
     id, phoneId, name, image, price, fullPrice, ram, screen, capacity,
-  } = product;
+  }
+    = product;
 
   const handleFavouriteClick = () => {
     if (!favourite) {
@@ -52,16 +53,10 @@ export const ProductCard: React.FC<Props> = ({
   return (
     <div className="product-card">
       <Link to={`/product/${phoneId}`} className="product-card__link">
-        <img
-          src={image}
-          alt="product"
-          className="product-card__image"
-        />
-      </Link>
+        <img src={image} alt="product" className="product-card__image" />
 
-      <p className="product-card__title">
-        {name}
-      </p>
+        <p className="product-card__title">{name}</p>
+      </Link>
 
       <div className="product-card__bottom-wrapper">
         <div className="product-card__prices-wrapper">
@@ -80,9 +75,7 @@ export const ProductCard: React.FC<Props> = ({
 
         <div className="product-card__specifications">
           <div className="product-card__specification">
-            <p className="product-card__specification-name">
-              Screen
-            </p>
+            <p className="product-card__specification-name">Screen</p>
 
             <p className="product-card__specification-value">
               <strong>{screen}</strong>
@@ -90,9 +83,7 @@ export const ProductCard: React.FC<Props> = ({
           </div>
 
           <div className="product-card__specification">
-            <p className="product-card__specification-name">
-              Capacity
-            </p>
+            <p className="product-card__specification-name">Capacity</p>
 
             <p className="product-card__specification-value">
               <strong>{capacity}</strong>
@@ -100,9 +91,7 @@ export const ProductCard: React.FC<Props> = ({
           </div>
 
           <div className="product-card__specification">
-            <p className="product-card__specification-name">
-              RAM
-            </p>
+            <p className="product-card__specification-name">RAM</p>
 
             <p className="product-card__specification-value">
               <strong>{ram}</strong>

@@ -12,6 +12,7 @@ import { FavouritesContext } from
   '../components/FavouriteContext/FavouriteContext';
 import { CartProductsContext } from '../components/CartContext/CartContext';
 import { ProductsContext } from '../components/ProductsContext/ProductsContext';
+import { PhoneImages } from '../components/PhoneImages/PhoneImages';
 
 export const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -55,6 +56,8 @@ export const ProductDetailsPage = () => {
   }
 
   const {
+    name,
+    images,
     colorsAvailable,
     color,
     namespaceId,
@@ -86,9 +89,13 @@ export const ProductDetailsPage = () => {
         >
           Back
         </Link>
+
+        <h1 className="phone-title">{name}</h1>
       </div>
 
-      <div className="container container--row-gap-80 container--margin-top-16">
+      <div className="container container--row-gap-80 container--margin-top-40">
+        <PhoneImages images={images} />
+
         <PhoneOptions
           colorsAvailable={colorsAvailable}
           color={color}

@@ -1,10 +1,12 @@
 import { BreadCrumbs } from '../components/BreadCrumbs/BreadCrumbs';
 import { NotFoundInfo } from '../components/NotFoundInfo/NotFoundInfo';
 
-export const TabletsPage = () => (
+export const AccessoriesPage = () => (
   <div className="container">
-    <BreadCrumbs breadCrumbsItems={[{ name: 'Tablets', slug: '/tablets' }]} />
+    <BreadCrumbs
+      breadCrumbsItems={[{ name: 'Accessories', slug: '/accesories' }]}
+    />
 
-    <NotFoundInfo text="Tablets not found" />
+    <NotFoundInfo text="Accessories not found" />
   </div>
 );

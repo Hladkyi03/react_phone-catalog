@@ -26,6 +26,7 @@
     background-size: 110% auto;
     background-position: -160% calc(100% + 125px);
     background-repeat: no-repeat;
+    transition: transform 0.3s ease-in-out;
 
     &--phones {
       background-image: url('../../media/img/category-phones.png');
@@ -43,6 +44,12 @@
       background-color: #973D5F;
       background-size: 183% auto;
       background-position: -11% calc(100%);
+    }
+  }
+
+  &__link {
+    &:hover .shop-by-caterogy__category-image {
+      transform: translateY(-20px);
     }
   }
 

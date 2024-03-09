@@ -5,6 +5,6 @@ export const NotFoundPage = () => (
   <div className="container">
     <BreadCrumbs breadCrumbsItems={[]} />
 
-    <NotFoundInfo />
+    <NotFoundInfo text="Page not found" />
   </div>
 );

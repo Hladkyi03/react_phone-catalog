@@ -60,9 +60,11 @@ export const BreadCrumbs: React.FC<Props> = ({ breadCrumbsItems }) => {
         </Link>
       ))}
 
-      <p className="breadcrumbs__item breadcrumbs__item--no-hover">
-        {breadCrumbsItems[breadCrumbsItems.length - 1].name}
-      </p>
+      {breadCrumbsItems.length > 0 && (
+        <p className="breadcrumbs__item breadcrumbs__item--no-hover">
+          {breadCrumbsItems[breadCrumbsItems.length - 1].name}
+        </p>
+      )}
     </div>
   );
 };

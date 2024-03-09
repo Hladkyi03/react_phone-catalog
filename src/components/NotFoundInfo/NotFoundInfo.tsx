@@ -1,7 +1,11 @@
 import './NotFoundInfo.scss';
 
-export const NotFoundInfo = () => (
+type Props = {
+  text: string;
+};
+
+export const NotFoundInfo:React.FC<Props> = ({ text }) => (
   <div className="not-found-info">
-    <h1 className="not-found-info__title">Page not found</h1>
+    <h1 className="not-found-info__title">{text}</h1>
   </div>
 );

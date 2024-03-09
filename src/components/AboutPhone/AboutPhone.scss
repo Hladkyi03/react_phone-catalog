@@ -1,0 +1,45 @@
+@import '../../CssReset/variables';
+
+.about-phone {
+  grid-column: 1 / 13;
+
+  &__title {
+    font-family: Mont-Bold, 'Courier New', sans-serif;;
+    font-size: 22px;
+    color: $gray-primary;
+  }
+
+  &__divider {
+    margin-top: 16px;
+    width: 100%;
+    height: 1px;
+    background-color: $gray-elements;
+  }
+
+  &__list {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  &__item-title {
+    font-family: Mont-SemiBold, 'Courier New', sans-serif;;
+    font-size: 20px;
+    line-height: 25.56px;
+    color: $gray-primary;
+  }
+
+  &__paragraphs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 16px;
+  }
+
+  &__paragraphs-item {
+    font-size: 14px;
+    line-height: 21px;
+    color: $gray-secondary;
+  }
+}

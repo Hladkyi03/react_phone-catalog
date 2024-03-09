@@ -1,5 +1,6 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import cn from 'classnames';
+import { Link } from 'react-router-dom';
 import { Product } from '../../types/Product';
 import './ProductCard.scss';
 import favouriteSvg from '../../media/icons/Favourites.svg';
@@ -25,20 +26,16 @@ export const ProductCard: React.FC<Props> = ({
   const cartReducer = useContext(CartProductsDispatchContext);
 
   const {
-    id, name, image, price, fullPrice, ram, screen, capacity,
+    id, phoneId, name, image, price, fullPrice, ram, screen, capacity,
   } = product;
 
-  const [isFavourite, setIsFavourite] = useState(favourite);
-
   const handleFavouriteClick = () => {
-    if (!isFavourite) {
-      setIsFavourite(true);
+    if (!favourite) {
       favouritesReducer({
         type: ActionTypeFavourites.AddFavourites,
         payload: product,
       });
     } else {
-      setIsFavourite(false);
       favouritesReducer({
         type: ActionTypeFavourites.DeleteFavourites,
         payload: id,
@@ -54,11 +51,13 @@ export const ProductCard: React.FC<Props> = ({
 
   return (
     <div className="product-card">
-      <img
-        src={image}
-        alt="product"
-        className="product-card__image"
-      />
+      <Link to={`/product/${phoneId}`} className="product-card__link">
+        <img
+          src={image}
+          alt="product"
+          className="product-card__image"
+        />
+      </Link>
 
       <p className="product-card__title">
         {name}
@@ -125,14 +124,14 @@ export const ProductCard: React.FC<Props> = ({
 
           <button
             className={cn('product-card__add-to-fav', {
-              'product-card__add-to-fav--active': isFavourite,
+              'product-card__add-to-fav--active': favourite,
             })}
             aria-label="favourites-btn"
             type="button"
             onClick={handleFavouriteClick}
           >
             <img
-              src={isFavourite ? favouriteActiveSvg : favouriteSvg}
+              src={favourite ? favouriteActiveSvg : favouriteSvg}
               alt="favourotes"
             />
           </button>

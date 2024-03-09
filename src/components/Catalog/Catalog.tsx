@@ -4,7 +4,7 @@ import { Product } from '../../types/Product';
 import { ProductsList } from '../ProductsList/ProductsList';
 
 type Props = {
-  products: Product[],
+  products: Product[];
 };
 
 export const Catalog: React.FC<Props> = ({ products }) => {
@@ -12,9 +12,10 @@ export const Catalog: React.FC<Props> = ({ products }) => {
 
   const page = Number(searchParams.get('page')) || 1;
 
-  const perPage = searchParams.get('perPage') === 'all'
-    ? products.length
-    : (Number(searchParams.get('perPage')) || 16);
+  const perPage
+    = searchParams.get('perPage') === 'all'
+      ? products.length
+      : Number(searchParams.get('perPage')) || 16;
 
   const sort = searchParams.get('sort') || 'age';
 
@@ -48,8 +49,8 @@ export const Catalog: React.FC<Props> = ({ products }) => {
       break;
   }
 
-  visibleProducts
-    = visibleProducts.filter(item => item.name.includes(filterQuery));
+  visibleProducts = visibleProducts.filter((item) => (
+    item.name.toLowerCase().includes(filterQuery.toLowerCase())));
 
   return (
     <div className="catalog">

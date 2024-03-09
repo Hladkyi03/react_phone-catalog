@@ -1,4 +1,4 @@
-@import '../../CssReset/variables';
+@import "../../CssReset/variables";
 
 .breadcrumbs {
   display: flex;
@@ -30,6 +30,12 @@
       margin-right: 8px;
       width: 16px;
       height: 16px;
+    }
+
+    &--no-hover {
+      &:hover {
+        color: $gray-secondary;
+      }
     }
   }
 }

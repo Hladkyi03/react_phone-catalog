@@ -12,6 +12,7 @@
 
   &__back-link {
     display: flex;
+    grid-column: 1 / -1;
     align-items: center;
     gap: 4px;
     font-family: Mont-SemiBold, Courier, sans-serif;
@@ -29,6 +30,10 @@
       height: 16px;
       display: block;
       margin-bottom: 2px;
+    }
+
+    &--margin-top-24 {
+      margin-top: 24px;
     }
   }
 }
